@@ -7,7 +7,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.leadpony.justify.api.JsonSchema;
-import org.leadpony.justify.api.JsonSchemaResolver;
 import org.leadpony.justify.api.JsonValidationService;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -17,8 +16,6 @@ import javax.json.JsonValue;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.StringReader;
-import java.net.URI;
-import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
 
