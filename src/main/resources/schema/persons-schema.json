@@ -17,7 +17,8 @@
         },
         "age": {
           "type": "integer",
-          "minimum": 0
+          "minimum": 0,
+          "default": 0
         },
         "hobbies": {
           "type": "array",

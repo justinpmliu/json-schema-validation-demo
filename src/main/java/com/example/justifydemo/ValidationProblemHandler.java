@@ -58,6 +58,7 @@ public class ValidationProblemHandler implements ProblemHandler {
     public void flush() {
         if (!missingFields.isEmpty()) {
             log.error(String.format("Missing fields: %s", missingFields));
+            missingFields = new TreeSet<>();
         }
     }
 
