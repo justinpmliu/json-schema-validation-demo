@@ -1,6 +1,6 @@
-package com.example.jsonschemavalidationdemo;
+package com.example.justifydemo;
 
-import com.example.jsonschemavalidationdemo.model.Person;
+import com.example.justifydemo.model.Person;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Before;
@@ -13,6 +13,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.json.JsonReader;
 import javax.json.JsonValue;
+import javax.json.stream.JsonParser;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.StringReader;
@@ -22,7 +23,7 @@ import java.util.List;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class JsonSchemaValidationDemoApplicationTests {
+public class JustifyDemoApplicationTests {
 
     // The only instance of validation service.
     private static final JsonValidationService service = JsonValidationService.newInstance();
@@ -50,6 +51,7 @@ public class JsonSchemaValidationDemoApplicationTests {
 
         // Our own problem handler
         ValidationProblemHandler handler = new ValidationProblemHandler();
+
 
         // JSON value to be read.
         JsonValue value = null;
@@ -154,11 +156,6 @@ public class JsonSchemaValidationDemoApplicationTests {
         }
 
         handler.flush();
-
-        // Pritns the read JSON value.
-        System.out.println();
-        System.out.println("JSON value: ");
-        System.out.println(value.toString());
     }
 
 }

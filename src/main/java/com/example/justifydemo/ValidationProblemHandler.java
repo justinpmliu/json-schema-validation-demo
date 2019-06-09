@@ -1,4 +1,4 @@
-package com.example.jsonschemavalidationdemo;
+package com.example.justifydemo;
 
 import lombok.extern.log4j.Log4j2;
 import org.leadpony.justify.api.Problem;

@@ -1,4 +1,4 @@
-package com.example.jsonschemavalidationdemo.model;
+package com.example.justifydemo.model;
 
 import lombok.Data;
 

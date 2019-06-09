@@ -1,13 +1,13 @@
-package com.example.jsonschemavalidationdemo;
+package com.example.justifydemo;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class JsonSchemaValidationDemoApplication {
+public class JustifyDemoApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(JsonSchemaValidationDemoApplication.class, args);
+        SpringApplication.run(JustifyDemoApplication.class, args);
     }
 
 }
