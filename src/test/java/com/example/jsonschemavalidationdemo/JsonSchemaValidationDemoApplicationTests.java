@@ -16,6 +16,7 @@ import javax.json.JsonValue;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.StringReader;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -48,7 +49,7 @@ public class JsonSchemaValidationDemoApplicationTests {
         }
 
         // Our own problem handler
-        MyProblemHandler handler = new MyProblemHandler();
+        ValidationProblemHandler handler = new ValidationProblemHandler();
 
         // JSON value to be read.
         JsonValue value = null;
@@ -58,6 +59,8 @@ public class JsonSchemaValidationDemoApplicationTests {
             // Reads the root JSON value from the instance.
             value = reader.readValue();
         }
+
+        handler.flush();
 
     }
 
@@ -74,7 +77,7 @@ public class JsonSchemaValidationDemoApplicationTests {
             schema = service.readSchema(in);
         }
         // Our own problem handler
-        MyProblemHandler handler = new MyProblemHandler();
+        ValidationProblemHandler handler = new ValidationProblemHandler();
 
         // JSON value to be read.
         JsonValue value = null;
@@ -84,6 +87,8 @@ public class JsonSchemaValidationDemoApplicationTests {
             // Reads the root JSON value from the instance.
             value = reader.readValue();
         }
+
+        handler.flush();
 
     }
 
@@ -100,7 +105,7 @@ public class JsonSchemaValidationDemoApplicationTests {
             schema = service.readSchema(in);
         }
         // Our own problem handler
-        MyProblemHandler handler = new MyProblemHandler();
+        ValidationProblemHandler handler = new ValidationProblemHandler();
 
         // JSON value to be read.
         JsonValue value = null;
@@ -111,6 +116,7 @@ public class JsonSchemaValidationDemoApplicationTests {
             value = reader.readValue();
         }
 
+        handler.flush();
     }
 
     @Test
@@ -121,6 +127,11 @@ public class JsonSchemaValidationDemoApplicationTests {
                 new Person("John", "Wang"),
                 new Person("Justin", "Liu")
         );
+        persons.get(1).setAge(-1);
+
+        List<String> hobbies = new ArrayList<>();
+        hobbies.add("");
+        persons.get(2).setHobbies(hobbies);
 
         StringReader json = new StringReader(mapper.writeValueAsString(persons));
 
@@ -130,14 +141,24 @@ public class JsonSchemaValidationDemoApplicationTests {
             schema = service.readSchema(in);
         }
 
+        // JSON value to be read.
+        JsonValue value = null;
+
         // Our own problem handler
-        MyProblemHandler handler = new MyProblemHandler();
+        ValidationProblemHandler handler = new ValidationProblemHandler();
 
         // Creaates a JSON reader which will validate the instance while reading.
         try (JsonReader reader = service.createReader(json, schema, handler)) {
             // Reads the root JSON value from the instance.
-            JsonValue value = reader.readValue();
+            value = reader.readValue();
         }
+
+        handler.flush();
+
+        // Pritns the read JSON value.
+        System.out.println();
+        System.out.println("JSON value: ");
+        System.out.println(value.toString());
     }
 
 }
